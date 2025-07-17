@@ -1,0 +1,1 @@
+Aqui eu fiz uma api para uma gestão de aluno que oferece total controler sobre o gerenciamento tanto do aluno quanto do boletim. User meu conhecimento em java, spring e poo para que o sistema siga as boas maneiras das apis em geral. 
