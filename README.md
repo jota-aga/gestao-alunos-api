@@ -1,3 +1,8 @@
+## Api Gestão De Alunos
+
+## Sobre
+
+Tive como objetivo desenvolver uma API que proporcionasse ao usuário total controle sobre o gerenciamento de alunos e seus boletins. Durante o projeto, consegui aplicar meus conhecimentos em APIs RESTful e no framework Spring Boot. 
 
 ## Base URL
 
