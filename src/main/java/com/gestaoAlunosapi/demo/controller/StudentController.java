@@ -1,7 +1,7 @@
 package com.gestaoAlunosapi.demo.controller;
 
 import java.util.List;
-import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.gestaoAlunosapi.demo.dto.BoletimDTO;
-import com.gestaoAlunosapi.demo.dto.StudentDto;
+import com.gestaoAlunosapi.demo.dto.StudentRequest;
 import com.gestaoAlunosapi.demo.models.Boletim;
 import com.gestaoAlunosapi.demo.models.Student;
 import com.gestaoAlunosapi.demo.service.BoletimService;
@@ -25,14 +23,14 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("student")
-public class Controller {
+public class StudentController {
 	@Autowired
 	StudentService studentService;
 	
 	@Autowired
 	BoletimService boletimService;
 	
-	@GetMapping("")
+	@GetMapping()
 	public List<Student> getAllStudents(){
 		return studentService.getAllStudents();
 	}
@@ -43,9 +41,9 @@ public class Controller {
 		return studentService.findStudentByCpf(cpf);
 	}
 	
-	@PostMapping("")
-	public ResponseEntity<String> createStudent(@Valid @RequestBody StudentDto studentDto) {
-			Student student = studentDto.cast();
+	@PostMapping()
+	public ResponseEntity<String> createStudent(@Valid @RequestBody StudentRequest studentRequest) {
+			Student student = new Student(studentRequest.name(), studentRequest.cpf());
 			Boletim boletim = new Boletim(student);
 			studentService.saveStudent(student);
 			boletimService.saveBoletim(boletim);
@@ -60,16 +58,18 @@ public class Controller {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<String> editStudent(@PathVariable int id, @Valid @RequestBody StudentDto studentDTO){
+	public ResponseEntity<String> editStudent(@PathVariable int id, @Valid @RequestBody StudentRequest studentRequest){
 		Student student = studentService.findStudentById(id);
-		student = studentService.editStudent(studentDTO, student);
+		student = studentService.editStudent(studentRequest, student);
 		studentService.saveStudent(student);
 		
 		return ResponseEntity.status(HttpStatus.OK).body(null);
 	}
 	
 	@GetMapping("/{id}")
-	public Student findById(@PathVariable int id) {
-		return studentService.findStudentById(id);
+	public ResponseEntity<String> findById(@PathVariable int id) {
+		Student student = studentService.findStudentById(id);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(null);
 	}
 }

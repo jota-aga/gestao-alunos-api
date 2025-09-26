@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gestaoAlunosapi.demo.dto.StudentDto;
+import com.gestaoAlunosapi.demo.dto.StudentRequest;
 import com.gestaoAlunosapi.demo.exceptions.CpfAlreadyExistsException;
 import com.gestaoAlunosapi.demo.exceptions.CpfNotFoundException;
 import com.gestaoAlunosapi.demo.exceptions.IdNotFoundException;
@@ -47,9 +47,9 @@ public class StudentService {
 		repo.deleteById(id);
 	}
 
-	public Student editStudent( StudentDto studentDTO, Student student) {
-		student.setName(studentDTO.getName());
-		student.setCpf(studentDTO.getCpf());
+	public Student editStudent( StudentRequest studentRequest, Student student) {
+		student.setName(studentRequest.getName());
+		student.setCpf(studentRequest.getCpf());
 		
 		return student;
 	}	

@@ -66,4 +66,16 @@ public class Student {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+
+	public Boletim getBoletim() {
+		return boletim;
+	}
+
+
+	public void setBoletim(Boletim boletim) {
+		this.boletim = boletim;
+	}
+	
+	
 }
