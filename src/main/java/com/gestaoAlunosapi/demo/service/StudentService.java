@@ -1,19 +1,18 @@
 package com.gestaoAlunosapi.demo.service;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gestaoAlunosapi.demo.dto.StudentRequest;
-import com.gestaoAlunosapi.demo.exceptions.CpfAlreadyExistsException;
 import com.gestaoAlunosapi.demo.exceptions.CpfNotFoundException;
 import com.gestaoAlunosapi.demo.exceptions.IdNotFoundException;
-import com.gestaoAlunosapi.demo.models.Student;
+import com.gestaoAlunosapi.demo.models.student.Student;
+import com.gestaoAlunosapi.demo.models.student.StudentDTO;
 import com.gestaoAlunosapi.demo.repository.StudentRepository;
 
-import jakarta.validation.Valid;
 
 @Service
 public class StudentService {
@@ -34,7 +33,7 @@ public class StudentService {
 	public Student findStudentByCpf(String cpf){
 		Optional<Student> student = repo.findByCpf(cpf);
 		
-		return student.orElseThrow(() -> new IdNotFoundException("Student"));
+		return student.orElseThrow(() -> new CpfNotFoundException());
 	}
 	
 	public Student findStudentById(int id) {
@@ -47,9 +46,9 @@ public class StudentService {
 		repo.deleteById(id);
 	}
 
-	public Student editStudent( StudentRequest studentRequest, Student student) {
-		student.setName(studentRequest.getName());
-		student.setCpf(studentRequest.getCpf());
+	public Student editStudent( StudentDTO studentDTO, Student student) {
+		student.setName(studentDTO.name());
+		student.setCpf(studentDTO.cpf());
 		
 		return student;
 	}	

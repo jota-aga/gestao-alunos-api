@@ -2,6 +2,7 @@ package com.gestaoAlunosapi.demo.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.gestaoAlunosapi.demo.dto.StudentRequest;
-import com.gestaoAlunosapi.demo.models.Boletim;
-import com.gestaoAlunosapi.demo.models.Student;
+
+import com.gestaoAlunosapi.demo.Mapper;
+import com.gestaoAlunosapi.demo.models.boletim.Boletim;
+import com.gestaoAlunosapi.demo.models.student.Student;
+import com.gestaoAlunosapi.demo.models.student.StudentDTO;
 import com.gestaoAlunosapi.demo.service.BoletimService;
 import com.gestaoAlunosapi.demo.service.StudentService;
 import jakarta.validation.Valid;
@@ -31,19 +34,24 @@ public class StudentController {
 	BoletimService boletimService;
 	
 	@GetMapping()
-	public List<Student> getAllStudents(){
-		return studentService.getAllStudents();
+	public ResponseEntity<List<StudentDTO>> getAllStudents(){
+		List<Student> students = studentService.getAllStudents();
+		List<StudentDTO> studentsDTO = Mapper.toDTO(students);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(studentsDTO);
 	}
 	
 	
 	@GetMapping("/cpf")
-	public Student findByCpf(@RequestParam String cpf) {
-		return studentService.findStudentByCpf(cpf);
+	public ResponseEntity<StudentDTO> findByCpf(@RequestParam String cpf) {
+		Student student = studentService.findStudentByCpf(cpf);
+		StudentDTO studentResponse = Mapper.toDTO(student);
+		return ResponseEntity.status(HttpStatus.OK).body(studentResponse);
 	}
 	
 	@PostMapping()
-	public ResponseEntity<String> createStudent(@Valid @RequestBody StudentRequest studentRequest) {
-			Student student = new Student(studentRequest.name(), studentRequest.cpf());
+	public ResponseEntity<String> createStudent(@Valid @RequestBody StudentDTO studentRequest) {
+			Student student = Mapper.toEntity(studentRequest);
 			Boletim boletim = new Boletim(student);
 			studentService.saveStudent(student);
 			boletimService.saveBoletim(boletim);
@@ -58,7 +66,7 @@ public class StudentController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<String> editStudent(@PathVariable int id, @Valid @RequestBody StudentRequest studentRequest){
+	public ResponseEntity<String> editStudent(@PathVariable int id, @Valid @RequestBody StudentDTO studentRequest){
 		Student student = studentService.findStudentById(id);
 		student = studentService.editStudent(studentRequest, student);
 		studentService.saveStudent(student);
@@ -67,9 +75,9 @@ public class StudentController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<String> findById(@PathVariable int id) {
+	public ResponseEntity<StudentDTO> findById(@PathVariable int id) {
 		Student student = studentService.findStudentById(id);
-		
-		return ResponseEntity.status(HttpStatus.OK).body(null);
+		StudentDTO studentResponse = Mapper.toDTO(student);
+		return ResponseEntity.status(HttpStatus.OK).body(studentResponse);
 	}
 }

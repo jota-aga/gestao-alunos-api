@@ -1,6 +1,6 @@
-package com.gestaoAlunosapi.demo.dto;
+package com.gestaoAlunosapi.demo.models.boletim;
 
-import com.gestaoAlunosapi.demo.enums.StatusEnum;
+import com.gestaoAlunosapi.demo.enums.Status;
 
 
 
@@ -12,6 +12,6 @@ public record BoletimResponse (
 		
 		double media,
 		
-		StatusEnum status
+		Status status
 		)
 	{}

@@ -2,6 +2,8 @@ package com.gestaoAlunosapi.demo.exceptions;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -41,6 +43,11 @@ public class GlobalExceptionHandler {
 	
 	@ExceptionHandler(IdNotFoundException.class)
 	public ResponseEntity<String> handleIdNotFound(IdNotFoundException e){
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+	}
+	
+	@ExceptionHandler(DataIntegrityViolationException.class)
+	public ResponseEntity<String> dataIntegrityViolationException(CpfAlreadyExistsException e){
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 	}
 }

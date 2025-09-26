@@ -1,4 +1,6 @@
-package com.gestaoAlunosapi.demo.models;
+package com.gestaoAlunosapi.demo.models.student;
+
+import com.gestaoAlunosapi.demo.models.boletim.Boletim;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

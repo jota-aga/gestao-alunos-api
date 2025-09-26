@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gestaoAlunosapi.demo.dto.BoletimRequest;
-import com.gestaoAlunosapi.demo.dto.BoletimResponse;
-import com.gestaoAlunosapi.demo.models.Boletim;
-import com.gestaoAlunosapi.demo.models.Student;
+import com.gestaoAlunosapi.demo.Mapper;
+import com.gestaoAlunosapi.demo.models.boletim.Boletim;
+import com.gestaoAlunosapi.demo.models.boletim.BoletimRequest;
+import com.gestaoAlunosapi.demo.models.boletim.BoletimResponse;
+import com.gestaoAlunosapi.demo.models.student.Student;
 import com.gestaoAlunosapi.demo.service.BoletimService;
 import com.gestaoAlunosapi.demo.service.StudentService;
 
@@ -26,26 +27,26 @@ public class BoletimController {
 	@Autowired
 	StudentService studentService;
 	
-	@GetMapping("/{studentId}")
-	public ResponseEntity<BoletimResponse> findByStudentId(@PathVariable int id){
-		Student student = studentService.findStudentById(id);
+	@GetMapping("student_id/{id}")
+	public ResponseEntity<BoletimResponse> findByStudentId(@PathVariable int studentId){
+		Student student = studentService.findStudentById(studentId);
 		Boletim boletim = student.getBoletim();
-		BoletimResponse boletimResponse = new BoletimResponse(boletim.getFirstTest(), boletim.getSecondTest(), boletim.getMedia(), boletim.getStatus());
+		BoletimResponse boletimResponse = Mapper.toDTO(boletim);
 		
 		return ResponseEntity.status(HttpStatus.FOUND).body(boletimResponse);
 	}
 	
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<BoletimResponse> findByBoletim(@PathVariable int id){
+	public ResponseEntity<BoletimResponse> findByBoletimById(@PathVariable int id){
 		Boletim boletim = boletimService.findBoletimById(id);
-		BoletimResponse boletimResponse = new BoletimResponse(boletim.getFirstTest(), boletim.getSecondTest(), boletim.getMedia(), boletim.getStatus());
+		BoletimResponse boletimResponse = Mapper.toDTO(boletim);
 		
 		return ResponseEntity.status(HttpStatus.FOUND).body(boletimResponse);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<BoletimResponse> findByBoletim(@PathVariable int id, @RequestBody BoletimRequest boletimRequest){
+	public ResponseEntity<BoletimResponse> editBoletim(@PathVariable int id, @RequestBody BoletimRequest boletimRequest){
 		Boletim boletim = boletimService.findBoletimById(id);
 		boletim = boletimService.editBoletim(boletimRequest, boletim);
 		boletimService.saveBoletim(boletim);

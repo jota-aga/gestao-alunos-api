@@ -1,6 +1,7 @@
-package com.gestaoAlunosapi.demo.models;
+package com.gestaoAlunosapi.demo.models.boletim;
 
-import com.gestaoAlunosapi.demo.enums.StatusEnum;
+import com.gestaoAlunosapi.demo.enums.Status;
+import com.gestaoAlunosapi.demo.models.student.Student;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,7 +27,7 @@ public class Boletim {
 	private double media;
 	
 	@Column
-	private StatusEnum status;
+	private Status status;
 	
 	@OneToOne
 	@JoinColumn(name = "student_id", nullable = false)
@@ -65,11 +66,11 @@ public class Boletim {
 		this.media = media;
 	}
 
-	public StatusEnum getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(StatusEnum status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 

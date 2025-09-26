@@ -1,4 +1,4 @@
-package com.gestaoAlunosapi.demo.dto;
+package com.gestaoAlunosapi.demo.models.boletim;
 
 import org.hibernate.validator.constraints.Range;
 

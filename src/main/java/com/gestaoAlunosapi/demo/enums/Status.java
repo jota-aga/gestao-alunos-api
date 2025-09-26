@@ -1,6 +1,6 @@
 package com.gestaoAlunosapi.demo.enums;
 
-public enum StatusEnum {
+public enum Status {
 	
 	APROVADO,
 	REPROVADO;

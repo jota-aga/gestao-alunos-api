@@ -5,10 +5,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gestaoAlunosapi.demo.dto.BoletimRequest;
-import com.gestaoAlunosapi.demo.enums.StatusEnum;
+import com.gestaoAlunosapi.demo.enums.Status;
 import com.gestaoAlunosapi.demo.exceptions.IdNotFoundException;
-import com.gestaoAlunosapi.demo.models.Boletim;
+import com.gestaoAlunosapi.demo.models.boletim.Boletim;
+import com.gestaoAlunosapi.demo.models.boletim.BoletimRequest;
 import com.gestaoAlunosapi.demo.repository.BoletimRepository;
 
 @Service
@@ -33,18 +33,18 @@ public class BoletimService {
 	}
 	
 	public Boletim editBoletim(BoletimRequest boletimDTO, Boletim boletim) {
-		boletim.setFirstTest(boletimDTO.getFirstTest());
-		boletim.setSecondTest(boletimDTO.getSecondTest());
+		boletim.setFirstTest(boletimDTO.firstTest());
+		boletim.setSecondTest(boletimDTO.secondTest());
 		
 		double media = (boletim.getFirstTest() + boletim.getSecondTest()) / 2;
 		
 		boletim.setMedia(media);
 		
 		if(media >= 7) {
-			boletim.setStatus(StatusEnum.APROVADO);
+			boletim.setStatus(Status.APROVADO);
 		}
 		else {
-			boletim.setStatus(StatusEnum.REPROVADO);
+			boletim.setStatus(Status.REPROVADO);
 		}
 		
 		return boletim;
