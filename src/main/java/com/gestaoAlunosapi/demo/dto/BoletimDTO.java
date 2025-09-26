@@ -4,7 +4,7 @@ import org.hibernate.validator.constraints.Range;
 import com.gestaoAlunosapi.demo.models.Boletim;
 import jakarta.validation.constraints.NotNull;
 
-public class RequestBoletim {
+public class BoletimDTO {
 	
 	@NotNull(message = "Nota não pode ser vazia")
 	@Range(min= 0, max= 10, message = "Nota deve estar entre 0 a 10")
@@ -14,7 +14,7 @@ public class RequestBoletim {
 	@Range(min= 0, max= 10, message = "Nota deve estar entre 0 a 10")
 	private double secondTest;
 	
-	public RequestBoletim(double firstTest, double secondTest) {
+	public BoletimDTO(double firstTest, double secondTest) {
 		this.firstTest = firstTest;
 		this.secondTest = secondTest;
 	}

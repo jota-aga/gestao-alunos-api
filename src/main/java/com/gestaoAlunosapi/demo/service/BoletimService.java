@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gestaoAlunosapi.demo.dto.BoletimDTO;
 import com.gestaoAlunosapi.demo.enums.StatusEnum;
 import com.gestaoAlunosapi.demo.exceptions.IdNotFoundException;
 import com.gestaoAlunosapi.demo.models.Boletim;
@@ -21,17 +22,14 @@ public class BoletimService {
 	
 	public Boletim findBoletimByStudentId(int studentId) {
 		Optional<Boletim> boletim = repo.findByStudent_Id(studentId);
-		System.out.println("não encontrado");
 		
-		if(boletim.isPresent()) {
-			return boletim.get();
-		}
-		else {
-			throw new IdNotFoundException();
-		}
+		return boletim.orElseThrow(() -> new IdNotFoundException("Boletim"));
 	}
 	
-	public void editBoletim(Boletim boletim) {
+	public Boletim editBoletim(BoletimDTO boletimDTO, Boletim boletim) {
+		boletim.setFirstTest(boletimDTO.getFirstTest());
+		boletim.setSecondTest(boletimDTO.getSecondTest());
+		
 		double media = (boletim.getFirstTest() + boletim.getSecondTest()) / 2;
 		
 		boletim.setMedia(media);
@@ -43,7 +41,7 @@ public class BoletimService {
 			boletim.setStatus(StatusEnum.REPROVADO);
 		}
 		
-		repo.save(boletim);
+		return boletim;
 	}
 	
 }

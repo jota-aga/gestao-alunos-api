@@ -30,20 +30,17 @@ public class GlobalExceptionHandler {
 	}
 	
 	@ExceptionHandler(CpfAlreadyExistsException.class)
-	public ResponseEntity<String> handleCpfExists(){
-		CpfAlreadyExistsException e = new CpfAlreadyExistsException();
+	public ResponseEntity<String> handleCpfExists(CpfAlreadyExistsException e){
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 	}
 	
 	@ExceptionHandler(CpfNotFoundException.class)
-	public ResponseEntity<String> handleCpfNotFound(){
-		CpfNotFoundException e = new CpfNotFoundException();
+	public ResponseEntity<String> handleCpfNotFound(CpfNotFoundException e){
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 	}
 	
 	@ExceptionHandler(IdNotFoundException.class)
-	public ResponseEntity<String> handleIdNotFound(){
-		IdNotFoundException e = new IdNotFoundException();
+	public ResponseEntity<String> handleIdNotFound(IdNotFoundException e){
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 	}
 }
