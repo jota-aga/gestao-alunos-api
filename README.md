@@ -22,34 +22,19 @@ Retorna todos os estudantes cadastrados.
 ```json
 [
   {
-    "id": 1,
-    "cpf": "12345678978",
-    "nome": "João Henrique",
-    "boletim"{
-        "primeiraNota": 10,
-        "segundaNota": 3,
-        "media": 6.5,
-        "status": "REPROVADO"
-    }
+    "cpf": "32165498765",
+    "name": "Thays Linhares"
   }
-
   {
-    "id": 2,
     "cpf": "12655678978",
     "nome": "João Lucas",
-    "boletim"{
-        "primeiraNota": 10,
-        "segundaNota": 5,
-        "media": 7.5,
-        "status": "APROVADO"
-    }
   }
 ]
 ```
 
 ### 2. Criar estudante
 
-**POST** `/add`
+**POST** ``
 
 Cria um novo estudante.
 
@@ -63,7 +48,7 @@ Cria um novo estudante.
 
 ### 3. Atualizar estudante
 
-**PUT** `/edit/{id}`
+**PUT** `/{id}`
 
 Atualiza um estudante existente.
 
@@ -77,7 +62,7 @@ Atualiza um estudante existente.
 
 ### 4. Remover estudante
 
-**DELETE** `/delete/{id}`
+**DELETE** `/{id}`
 
 Remove um estudante pelo ID.
 
@@ -91,15 +76,8 @@ Retorna um estudante existente.
 ```json
 [
   {
-    "id": 1,
     "cpf": "12345678978",
-    "nome": "João Henrique",
-    "boletim"{
-        "primeiraNota": 10,
-        "segundaNota": 3,
-        "media": 6.5,
-        "status": "REPROVADO"
-    }
+    "nome": "João Henrique"
   }
 ]
 ```
@@ -121,21 +99,22 @@ cpf:"12345678978"
   {
     "id": 1,
     "cpf": "12345678978",
-    "nome": "João Henrique",
-    "boletim"{
-        "primeiraNota": 10,
-        "segundaNota": 3,
-        "media": 6.5,
-        "status": "REPROVADO"
-    }
+    "nome": "João Henrique"
   }
 ]
 ```
-### 7. Atualizar boletim
+## Base URL
 
-**PUT** `/boletim/edit/{id}`
+```
+/report-card
+```
 
-Atualiza um boletim pelo id do estudante.
+## Endpoints
+### 7. Atualizar report card
+
+**PUT** `/{id}`
+
+Atualiza um report card pelo id do estudante.
 
 **Corpo da requisição:**
 ```json
@@ -145,11 +124,11 @@ Atualiza um boletim pelo id do estudante.
 }
 ```
 
-### 8. Procurar boletim por id do estudante
+### 8. Procurar report card por id do estudante
 
-**GET** `/boletim/{id}`
+**GET** `/student_id/{studentId}`
 
-Procura um boletim pelo id do estudante.
+Procura um report card pelo id do estudante.
 
 **Exemplo de resposta:**
 ```json
@@ -161,5 +140,20 @@ Procura um boletim pelo id do estudante.
     "status": "REPROVADO"
     }
 ]
+
+### 3. Procurar report card por id.
+
+**GET** `/{id}`
+
+Procura um report card pelo seu id.
+
+**Exemplo de resposta:**
+```json
+{
+    "firstTest": 10.00,
+    "secondTest": 2.00,
+    "media": 6.00,
+    "status": "REPROVADO"
+}
 
 
