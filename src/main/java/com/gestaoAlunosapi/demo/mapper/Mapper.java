@@ -1,9 +1,9 @@
-package com.gestaoAlunosapi.demo;
+package com.gestaoAlunosapi.demo.mapper;
 
 import java.util.List;
 
-import com.gestaoAlunosapi.demo.models.boletim.Boletim;
-import com.gestaoAlunosapi.demo.models.boletim.BoletimResponse;
+import com.gestaoAlunosapi.demo.models.report_card.ReportCard;
+import com.gestaoAlunosapi.demo.models.report_card.ReportCardResponse;
 import com.gestaoAlunosapi.demo.models.student.Student;
 import com.gestaoAlunosapi.demo.models.student.StudentDTO;
 
@@ -29,8 +29,8 @@ public class Mapper {
 		return dto;
 	}
 	
-	public static BoletimResponse toDTO(Boletim boletim) {
-		BoletimResponse dto = new BoletimResponse(boletim.getFirstTest(), boletim.getSecondTest(), boletim.getMedia(), boletim.getStatus());
+	public static ReportCardResponse toDTO(ReportCard reportCard) {
+		ReportCardResponse dto = new ReportCardResponse(reportCard.getFirstTest(), reportCard.getSecondTest(), reportCard.getMedia(), reportCard.getStatus());
 		
 		return dto;
 	}

@@ -1,4 +1,4 @@
-package com.gestaoAlunosapi.demo.models.boletim;
+package com.gestaoAlunosapi.demo.models.report_card;
 
 import java.math.BigDecimal;
 
@@ -14,7 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
 @Entity
-public class Boletim {
+public class ReportCard {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -36,11 +36,11 @@ public class Boletim {
 	private Student student;
 	
 	
-	public Boletim() {
+	public ReportCard() {
 		super();
 	}
 
-	public Boletim(Student student) {
+	public ReportCard(Student student) {
 		this.student = student;
 	}
 

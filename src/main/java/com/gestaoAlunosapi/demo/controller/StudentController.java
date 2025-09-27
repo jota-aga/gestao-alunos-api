@@ -3,6 +3,7 @@ package com.gestaoAlunosapi.demo.controller;
 import java.util.List;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gestaoAlunosapi.demo.Mapper;
-import com.gestaoAlunosapi.demo.models.boletim.Boletim;
+import com.gestaoAlunosapi.demo.mapper.Mapper;
+import com.gestaoAlunosapi.demo.models.report_card.ReportCard;
 import com.gestaoAlunosapi.demo.models.student.Student;
 import com.gestaoAlunosapi.demo.models.student.StudentDTO;
-import com.gestaoAlunosapi.demo.service.BoletimService;
+import com.gestaoAlunosapi.demo.service.ReportCardService;
 import com.gestaoAlunosapi.demo.service.StudentService;
 import jakarta.validation.Valid;
 
@@ -31,7 +32,7 @@ public class StudentController {
 	StudentService studentService;
 	
 	@Autowired
-	BoletimService boletimService;
+	ReportCardService reportCardService;
 	
 	@GetMapping()
 	public ResponseEntity<List<StudentDTO>> getAllStudents(){
@@ -52,9 +53,9 @@ public class StudentController {
 	@PostMapping()
 	public ResponseEntity<String> createStudent(@Valid @RequestBody StudentDTO studentRequest) {
 			Student student = Mapper.toEntity(studentRequest);
-			Boletim boletim = new Boletim(student);
+			ReportCard reportCard = new ReportCard(student);
 			studentService.saveStudent(student);
-			boletimService.saveBoletim(boletim);
+			reportCardService.saveReportCard(reportCard);
 			return ResponseEntity.status(HttpStatus.CREATED).body(null);
 	}
 	

@@ -1,6 +1,6 @@
 package com.gestaoAlunosapi.demo.models.student;
 
-import com.gestaoAlunosapi.demo.models.boletim.Boletim;
+import com.gestaoAlunosapi.demo.models.report_card.ReportCard;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -25,7 +25,7 @@ public class Student {
 	private String name;
 	
 	@OneToOne(mappedBy="student", cascade = CascadeType.ALL)
-	private Boletim boletim;
+	private ReportCard reportCard;
 	
 	
 	
@@ -70,13 +70,13 @@ public class Student {
 	}
 
 
-	public Boletim getBoletim() {
-		return boletim;
+	public ReportCard getReportCard() {
+		return reportCard;
 	}
 
 
-	public void setBoletim(Boletim boletim) {
-		this.boletim = boletim;
+	public void setReportCard(ReportCard reportCard) {
+		this.reportCard = reportCard;
 	}
 	
 	

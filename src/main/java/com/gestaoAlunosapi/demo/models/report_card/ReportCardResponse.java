@@ -1,4 +1,4 @@
-package com.gestaoAlunosapi.demo.models.boletim;
+package com.gestaoAlunosapi.demo.models.report_card;
 
 import java.math.BigDecimal;
 
@@ -6,7 +6,7 @@ import com.gestaoAlunosapi.demo.enums.Status;
 
 
 
-public record BoletimResponse (
+public record ReportCardResponse (
 		
 		BigDecimal firstTest,
 
