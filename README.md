@@ -130,15 +130,13 @@ Procura um report card pelo id do estudante.
 
 **Exemplo de resposta:**
 ```json
-[
   {
     "primeiraNota": 10,
     "segundaNota": 3,
     "media": 6.5,
     "status": "REPROVADO"
     }
-]
-
+```
 ### 3. Procurar report card por id.
 
 **GET** `/{id}`
@@ -153,5 +151,5 @@ Procura um report card pelo seu id.
     "media": 6.00,
     "status": "REPROVADO"
 }
-
+```
 
