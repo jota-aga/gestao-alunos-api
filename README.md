@@ -74,12 +74,12 @@ Retorna um estudante existente.
 
 **Exemplo de resposta:**
 ```json
-[
+
   {
     "cpf": "12345678978",
     "nome": "João Henrique"
   }
-]
+
 ```
 
 ### 6. Procurar estudante por CPF
@@ -95,13 +95,11 @@ cpf:"12345678978"
 
 **Exemplo de resposta:**
 ```json
-[
   {
     "id": 1,
     "cpf": "12345678978",
     "nome": "João Henrique"
   }
-]
 ```
 ## Base URL
 
@@ -110,7 +108,7 @@ cpf:"12345678978"
 ```
 
 ## Endpoints
-### 7. Atualizar report card
+### 1. Atualizar report card
 
 **PUT** `/{id}`
 
@@ -124,7 +122,7 @@ Atualiza um report card pelo id do estudante.
 }
 ```
 
-### 8. Procurar report card por id do estudante
+### 2. Procurar report card por id do estudante
 
 **GET** `/student_id/{studentId}`
 
