@@ -1,8 +1,7 @@
 ## Api Gestão De Alunos
 
 ## Sobre
-
-Tive como objetivo desenvolver uma API que proporcionasse ao usuário total controle sobre o gerenciamento de alunos e seus boletins. Durante o projeto, consegui aplicar meus conhecimentos em APIs RESTful e no framework Spring Boot. 
+Tive como objetivo desenvolver uma api simples de alunos a qual permite o gerenciamento de alunos (students) e seus respectivos boletins (report card). A API oferece todas as operações básicas de CRUD (criar, listar, atualizar e remover alunos) e também possibilita a edição e a consulta de boletins de forma prática e organizada.  
 
 ## Base URL
 
@@ -137,7 +136,7 @@ Procura um report card pelo id do estudante.
     "status": "REPROVADO"
     }
 ```
-### 3. Procurar report card por id.
+### 3. Procurar report card por id
 
 **GET** `/{id}`
 
