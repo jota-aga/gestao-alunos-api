@@ -1,5 +1,6 @@
 package com.gestaoAlunosapi.demo.service;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +37,11 @@ public class BoletimService {
 		boletim.setFirstTest(boletimDTO.firstTest());
 		boletim.setSecondTest(boletimDTO.secondTest());
 		
-		double media = (boletim.getFirstTest() + boletim.getSecondTest()) / 2;
+		BigDecimal media = (boletim.getFirstTest().add(boletim.getSecondTest())).divide(BigDecimal.TWO);
 		
 		boletim.setMedia(media);
 		
-		if(media >= 7) {
+		if(media.compareTo(BigDecimal.valueOf(7)) == 0 || media.compareTo(BigDecimal.valueOf(7)) == 1) {
 			boletim.setStatus(Status.APROVADO);
 		}
 		else {

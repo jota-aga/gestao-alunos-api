@@ -1,16 +1,18 @@
 package com.gestaoAlunosapi.demo.models.boletim;
 
+import java.math.BigDecimal;
+
 import com.gestaoAlunosapi.demo.enums.Status;
 
 
 
 public record BoletimResponse (
 		
-		double firstTest,
+		BigDecimal firstTest,
 
-		double secondTest,
+		BigDecimal secondTest,
 		
-		double media,
+		BigDecimal media,
 		
 		Status status
 		)

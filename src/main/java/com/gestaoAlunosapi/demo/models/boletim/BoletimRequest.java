@@ -1,18 +1,19 @@
 package com.gestaoAlunosapi.demo.models.boletim;
 
-import org.hibernate.validator.constraints.Range;
+import java.math.BigDecimal;
 
+import org.hibernate.validator.constraints.Range;
 import jakarta.validation.constraints.NotNull;
 
 public record BoletimRequest (
 	
 	@NotNull(message = "Nota não pode ser vazia")
-	@Range(min= 0, max= 10, message = "Nota deve estar entre 0 a 10")
-	double firstTest,
+	@Range(min = 0, max = 10, message = "Nota deve estar entre 0 e 10")
+	BigDecimal firstTest,
 	
 	@NotNull(message = "Nota não pode ser vazia")
-	@Range(min= 0, max= 10, message = "Nota deve estar entre 0 a 10")
-	double secondTest
+	@Range(min = 0, max = 10, message = "Nota deve estar entre 0 e 10")
+	BigDecimal secondTest
 	)
 {}
 	

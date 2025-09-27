@@ -31,10 +31,6 @@ public class GlobalExceptionHandler {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 	}
 	
-	@ExceptionHandler(CpfAlreadyExistsException.class)
-	public ResponseEntity<String> handleCpfExists(CpfAlreadyExistsException e){
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-	}
 	
 	@ExceptionHandler(CpfNotFoundException.class)
 	public ResponseEntity<String> handleCpfNotFound(CpfNotFoundException e){
@@ -47,7 +43,7 @@ public class GlobalExceptionHandler {
 	}
 	
 	@ExceptionHandler(DataIntegrityViolationException.class)
-	public ResponseEntity<String> dataIntegrityViolationException(CpfAlreadyExistsException e){
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+	public ResponseEntity<String> dataIntegrityViolationException(DataIntegrityViolationException e){
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("CPF already exists.");
 	}
 }

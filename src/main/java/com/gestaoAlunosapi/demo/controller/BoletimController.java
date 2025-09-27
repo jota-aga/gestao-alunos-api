@@ -18,6 +18,8 @@ import com.gestaoAlunosapi.demo.models.student.Student;
 import com.gestaoAlunosapi.demo.service.BoletimService;
 import com.gestaoAlunosapi.demo.service.StudentService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("boletim")
 public class BoletimController {
@@ -27,7 +29,7 @@ public class BoletimController {
 	@Autowired
 	StudentService studentService;
 	
-	@GetMapping("student_id/{id}")
+	@GetMapping("student_id/{studentId}")
 	public ResponseEntity<BoletimResponse> findByStudentId(@PathVariable int studentId){
 		Student student = studentService.findStudentById(studentId);
 		Boletim boletim = student.getBoletim();
@@ -46,7 +48,7 @@ public class BoletimController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<BoletimResponse> editBoletim(@PathVariable int id, @RequestBody BoletimRequest boletimRequest){
+	public ResponseEntity<BoletimResponse> editBoletim(@PathVariable int id, @Valid @RequestBody BoletimRequest boletimRequest){
 		Boletim boletim = boletimService.findBoletimById(id);
 		boletim = boletimService.editBoletim(boletimRequest, boletim);
 		boletimService.saveBoletim(boletim);

@@ -1,5 +1,7 @@
 package com.gestaoAlunosapi.demo.models.boletim;
 
+import java.math.BigDecimal;
+
 import com.gestaoAlunosapi.demo.enums.Status;
 import com.gestaoAlunosapi.demo.models.student.Student;
 
@@ -18,13 +20,13 @@ public class Boletim {
 	private int id;
 	
 	@Column
-	private double firstTest;
+	private BigDecimal firstTest;
 	
 	@Column
-	private double secondTest;
+	private BigDecimal secondTest;
 	
 	@Column
-	private double media;
+	private BigDecimal media;
 	
 	@Column
 	private Status status;
@@ -42,27 +44,27 @@ public class Boletim {
 		this.student = student;
 	}
 
-	public double getFirstTest() {
+	public BigDecimal getFirstTest() {
 		return firstTest;
 	}
 
-	public void setFirstTest(double firstTest) {
+	public void setFirstTest(BigDecimal firstTest) {
 		this.firstTest = firstTest;
 	}
 
-	public double getSecondTest() {
+	public BigDecimal getSecondTest() {
 		return secondTest;
 	}
 
-	public void setSecondTest(double secondTest) {
+	public void setSecondTest(BigDecimal secondTest) {
 		this.secondTest = secondTest;
 	}
 
-	public double getMedia() {
+	public BigDecimal getMedia() {
 		return media;
 	}
 
-	public void setMedia(double media) {
+	public void setMedia(BigDecimal media) {
 		this.media = media;
 	}
 
