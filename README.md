@@ -33,7 +33,7 @@ Retorna todos os estudantes cadastrados.
 
 ### 2. Criar estudante
 
-**POST** ``
+**POST** 
 
 Cria um novo estudante.
 
