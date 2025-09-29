@@ -26,7 +26,7 @@ Retorna todos os estudantes cadastrados.
   }
   {
     "cpf": "12655678978",
-    "nome": "João Lucas",
+    "name": "João Lucas",
   }
 ]
 ```
@@ -41,7 +41,7 @@ Cria um novo estudante.
 ```json
 {
     "cpf": "32165498798",
-    "nome": "João Marcos"
+    "name": "João Marcos"
 }
 ```
 
@@ -55,7 +55,7 @@ Atualiza um estudante existente.
 ```json
 {
     "cpf": "32165498798",
-    "nome": "João Marcos"
+    "name": "João Marcos"
 }
 ```
 
@@ -76,7 +76,7 @@ Retorna um estudante existente.
 
   {
     "cpf": "12345678978",
-    "nome": "João Henrique"
+    "name": "João Henrique"
   }
 
 ```
@@ -95,9 +95,8 @@ cpf:"12345678978"
 **Exemplo de resposta:**
 ```json
   {
-    "id": 1,
     "cpf": "12345678978",
-    "nome": "João Henrique"
+    "name": "João Henrique"
   }
 ```
 ## Base URL
@@ -136,7 +135,7 @@ Procura um report card pelo id do estudante.
     "status": "REPROVADO"
     }
 ```
-### 3. Procurar report card por id
+### 3. Procurar report card pelo seu id
 
 **GET** `/{id}`
 
