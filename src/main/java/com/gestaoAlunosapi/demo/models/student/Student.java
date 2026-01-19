@@ -1,5 +1,7 @@
 package com.gestaoAlunosapi.demo.models.student;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 import com.gestaoAlunosapi.demo.models.report_card.ReportCard;
 
 import jakarta.persistence.CascadeType;
@@ -10,6 +12,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "student")
@@ -18,9 +22,13 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@NotBlank(message = "Campo CPf está vazio")
+	@CPF(message = "CPF inválido")
 	@Column(unique=true)
 	private String cpf;
 	
+	@NotBlank(message = "Campo nome está vazio")
+	@Size(min = 3, message= "Nome inválido")
 	@Column
 	private String name;
 	

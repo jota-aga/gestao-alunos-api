@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import com.gestaoAlunosapi.demo.enums.Status;
 
 
-
 public record ReportCardResponse (
 		
 		BigDecimal firstTest,

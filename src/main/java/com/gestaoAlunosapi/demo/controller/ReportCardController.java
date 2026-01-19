@@ -1,7 +1,6 @@
 package com.gestaoAlunosapi.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,11 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gestaoAlunosapi.demo.mapper.Mapper;
+import com.gestaoAlunosapi.demo.mapper.ReportCardMapper;
 import com.gestaoAlunosapi.demo.models.report_card.ReportCard;
 import com.gestaoAlunosapi.demo.models.report_card.ReportCardRequest;
 import com.gestaoAlunosapi.demo.models.report_card.ReportCardResponse;
-import com.gestaoAlunosapi.demo.models.student.Student;
 import com.gestaoAlunosapi.demo.service.ReportCardService;
 import com.gestaoAlunosapi.demo.service.StudentService;
 
@@ -30,11 +28,11 @@ public class ReportCardController {
 	@Autowired
 	StudentService studentService;
 	
-	@GetMapping("student_id/{studentId}")
+	@GetMapping("/student/{studentId}")
 	public ResponseEntity<ReportCardResponse> findByStudentId(@PathVariable int studentId){
-		Student student = studentService.findStudentById(studentId);
-		ReportCard reportCard = student.getReportCard();
-		ReportCardResponse reportCardResponse = Mapper.toDTO(reportCard);
+		ReportCard reportCard = reportCardService.findReportCardByStudentId(studentId);
+		
+		ReportCardResponse reportCardResponse = ReportCardMapper.toDTO(reportCard);
 		
 		return ResponseEntity.status(HttpStatus.FOUND).body(reportCardResponse);
 	}
@@ -43,16 +41,15 @@ public class ReportCardController {
 	@GetMapping("/{id}")
 	public ResponseEntity<ReportCardResponse> findByReportCardById(@PathVariable int id){
 		ReportCard reportCard = reportCardService.findReportCardById(id);
-		ReportCardResponse reportCardResponse = Mapper.toDTO(reportCard);
+		
+		ReportCardResponse reportCardResponse = ReportCardMapper.toDTO(reportCard);
 		
 		return ResponseEntity.status(HttpStatus.FOUND).body(reportCardResponse);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<ReportCardResponse> editReportCard(@PathVariable int id, @Valid @RequestBody ReportCardRequest reportCardRequest){
-		ReportCard reportCard = reportCardService.findReportCardById(id);
-		reportCard = reportCardService.editReportCard(reportCardRequest, reportCard);
-		reportCardService.saveReportCard(reportCard);
+	public ResponseEntity<?> editReportCard(@PathVariable int id, @Valid @RequestBody ReportCardRequest reportCardRequest){
+		reportCardService.editReportCard(reportCardRequest, id);
 		
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
